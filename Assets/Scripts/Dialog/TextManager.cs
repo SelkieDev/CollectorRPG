@@ -15,6 +15,6 @@ public class TextManager : MonoBehaviour {
     }
 
     void Start() {
-    	SpawnTextBox(spawn, "What the fuck? What the fuck? What the fuck? What the fuck? What the fuck? What the fuck?", .04f);
+    	SpawnTextBox(spawn, "<color=cyan>What</color> the fuck? What the <i>fuck?</i> What the fuck? What the <color=magenta>fuck</color>? What the fuck? What the fuck?", .04f);
     }
 }
