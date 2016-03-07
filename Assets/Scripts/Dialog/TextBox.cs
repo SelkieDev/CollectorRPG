@@ -15,10 +15,13 @@ public class TextBox : MonoBehaviour {
     }
 
     public void TypeText(string textToBeDisplayed, float textSpeed) {
+        StopAllCoroutines();
+        ClearAllLetters();
         StartCoroutine(CoTypeText(textToBeDisplayed, textSpeed));
     }
 
-    public IEnumerator CoTypeText(string textToBeDisplayed, float textSpeed) {
+    /** Displays TEXTTOBEDISPLAYED at one character per TEXTSPEED seconds. */
+    IEnumerator CoTypeText(string textToBeDisplayed, float textSpeed) {
         for (int i = 0, j = 0; i < textToBeDisplayed.Length; i++) {
             if (textToBeDisplayed[i] == '<' || specialText) {
                 specialText = true;
@@ -30,6 +33,9 @@ public class TextBox : MonoBehaviour {
                     j = 0;
                     i += modifier2.Length + modifier1.Length;
                     modifier1 = modifier2 = null;
+                    if (i >= textToBeDisplayed.Length) {
+                        break;
+                    }
                     text.text += textToBeDisplayed[i];
                     yield return new WaitForSeconds(textSpeed);
                 } else {
@@ -45,10 +51,13 @@ public class TextBox : MonoBehaviour {
         }
     }
 
+    /** Clears all letters from the textbox. */
     public void ClearAllLetters() {
-        //fucking hell.
+        text.text = null;
     }
 
+    /** Once a modifier is found, this function will parse it out and give you the text
+      * inbetween. */
     void ParseOutModifiers(string textToBeDisplayed, int index) {
         modifier1 = util.ParseUntil(textToBeDisplayed.Substring(index), '>');
         textInbetween = String.Copy(textToBeDisplayed).Substring(index + modifier1.Length);

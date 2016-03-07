@@ -3,18 +3,25 @@ using System.Collections;
 
 public class TextManager : MonoBehaviour {
 
-	public GameObject textBox;
-    public Transform canvas;
+    public GameObject textBoxHelper;
+	static GameObject textBox;
+    static Transform canvasTransform;
+    static GameObject newTextBox;
 
-    public RectTransform spawn;
-
-    public void SpawnTextBox(RectTransform location, string text, float dialogSpeed) {
-        GameObject newTextBox = Instantiate(textBox, location.anchoredPosition, location.rotation) as GameObject;
-        newTextBox.GetComponent<TextBox>().TypeText(text, dialogSpeed);
-        newTextBox.transform.SetParent(canvas, false);
-    }
+    static RectTransform spawn;
 
     void Start() {
-    	SpawnTextBox(spawn, "<color=cyan>Please</color> work. <color=purple>Please</color> work. <color=teal>Please</color> work. <color=red>Please</color> work. ", .1f);
+        textBox = textBoxHelper;
+        canvasTransform = GameObject.FindWithTag("Canvas").transform;
+        spawn = GameObject.FindWithTag("TextBoxSpawn").GetComponent<RectTransform>();
+        newTextBox = Instantiate(textBox, spawn.anchoredPosition, spawn.rotation) as GameObject;
+        newTextBox.transform.SetParent(canvasTransform, false);
+        newTextBox.SetActive(false);
+        //SpawnTextBox("<color=cyan>Please</color> work. <color=purple>Please</color> work. <color=teal>Please</color> work. <color=red>Please</color> work. ", .1f);
+    }
+
+    public static void SpawnTextBox(string text, float dialogSpeed = 0.2f) {
+        newTextBox.SetActive(true);
+        newTextBox.GetComponent<TextBox>().TypeText(text, dialogSpeed);
     }
 }

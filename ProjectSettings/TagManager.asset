@@ -6,6 +6,9 @@ TagManager:
   tags:
   - InteractableCharacter
   - Letter
+  - Canvas
+  - TextBoxSpawn
+  - TextBox
   layers:
   - Default
   - TransparentFX
