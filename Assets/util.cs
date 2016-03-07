@@ -16,4 +16,15 @@ public class util : MonoBehaviour {
 		}
 		return closestObject;
 	}
+
+	public static string ParseUntil(string text, char characterToStopAt) {
+		string returnString = "";
+		for (int i = 0; i < text.Length; i += 1) {
+			returnString += text[i];
+			if (text[i] == '>') {
+				return returnString;
+			}
+		}
+		return null;
+	}
 }
