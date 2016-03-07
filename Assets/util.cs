@@ -17,11 +17,12 @@ public class util : MonoBehaviour {
 		return closestObject;
 	}
 
-	public static string ParseUntil(string text, char characterToStopAt) {
+	/** Parses TEXT up to and ***including*** STOPCHAR. */
+	public static string ParseUntil(string text, char stopChar) {
 		string returnString = "";
 		for (int i = 0; i < text.Length; i += 1) {
 			returnString += text[i];
-			if (text[i] == '>') {
+			if (text[i] == stopChar) {
 				return returnString;
 			}
 		}

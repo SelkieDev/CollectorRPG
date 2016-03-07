@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,28 +19,26 @@ public class TextBox : MonoBehaviour {
     }
 
     public IEnumerator CoTypeText(string textToBeDisplayed, float textSpeed) {
-        // <GARBAGE1>TextToBeChanged<GARBAGE2>
-        //<GARBAGE1>T<GARBAGE2><GARBAGE1>E<GARBAGE2> ... <GARBAGE1>D<GARBAGE2>
         for (int i = 0, j = 0; i < textToBeDisplayed.Length; i++) {
             if (textToBeDisplayed[i] == '<' || specialText) {
                 specialText = true;
                 if (modifier1 == null) {
-                    modifier1 = util.ParseUntil(textToBeDisplayed.Substring(i), '>'); // <GARBAGE1>
-                    textInbetween = textToBeDisplayed.Remove(i, i + modifier1.Length);
-                   // Debug.Log("substring: " + textToBeDisplayed.Substring(i + modifier1.Length + textInbetween.Length));
-                    modifier2 = util.ParseUntil(textToBeDisplayed.Substring(i + modifier1.Length + textInbetween.Length), '>');
-                   // Debug.Log("Inbetween: " + textInbetween)
-                   // Debug.Log("Mod1: " + modifier1);
-                   // Debug.Log("Mod2: " + modifier2);
+                    ParseOutModifiers(textToBeDisplayed, i);
                 }
-                if (j == textInbetween.Length - 1) {
+                if (j == textInbetween.Length) {
                     specialText = false;
                     j = 0;
-                    modifier1 = null;
+                    i += modifier2.Length + modifier1.Length;
+                    modifier1 = modifier2 = null;
+                    text.text += textToBeDisplayed[i];
+                    yield return new WaitForSeconds(textSpeed);
+                } else {
+                    text.text += modifier1 + textInbetween[j] + modifier2;
+                    j++;
                 }
-                text.text += modifier1 + textInbetween[j] + modifier2;
-                j++;
-            } else {
+                yield return new WaitForSeconds(textSpeed);
+            }
+            else {
                 text.text += textToBeDisplayed[i];
                 yield return new WaitForSeconds(textSpeed);
             }
@@ -48,5 +47,14 @@ public class TextBox : MonoBehaviour {
 
     public void ClearAllLetters() {
         //fucking hell.
+    }
+
+    void ParseOutModifiers(string textToBeDisplayed, int index) {
+        modifier1 = util.ParseUntil(textToBeDisplayed.Substring(index), '>');
+        textInbetween = String.Copy(textToBeDisplayed).Substring(index + modifier1.Length);
+        modifier2 = util.ParseUntil(textInbetween, '>');
+        textInbetween = util.ParseUntil(textInbetween, '<');
+        textInbetween = textInbetween.Remove(textInbetween.Length - 1, 1);
+        modifier2 = modifier2.Remove(0, textInbetween.Length);
     }
 }
