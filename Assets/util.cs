@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class util : MonoBehaviour {
 
+	/** Returns the nearest object within POSSIBLEOBJECTS to the PLAYER. */
 	public static GameObject FindNearestObject(GameObject player, List<GameObject> possibleObjects) {
 		GameObject closestObject = null;
 		float closestObjectDistance = 99999f;

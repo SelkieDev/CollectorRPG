@@ -14,6 +14,7 @@ public class TextBox : MonoBehaviour {
         text = GetComponentInChildren<Text>();
     }
 
+    /** Classes other than TextManager SHOULD NOT call this function. */
     public void TypeText(string textToBeDisplayed, float textSpeed) {
         StopAllCoroutines();
         ClearAllLetters();

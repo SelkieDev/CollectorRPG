@@ -17,11 +17,12 @@ public class TextManager : MonoBehaviour {
         newTextBox = Instantiate(textBox, spawn.anchoredPosition, spawn.rotation) as GameObject;
         newTextBox.transform.SetParent(canvasTransform, false);
         newTextBox.SetActive(false);
-        //SpawnTextBox("<color=cyan>Please</color> work. <color=purple>Please</color> work. <color=teal>Please</color> work. <color=red>Please</color> work. ", .1f);
     }
 
-    public static void SpawnTextBox(string text, float dialogSpeed = 0.2f) {
+    /** Spawns a text box and types TEXT at one character per SPEED seconds.
+      * All other classes should call this function and not TypeText. */
+    public static void SpawnTextBox(string text, float speed = 0.1f) {
         newTextBox.SetActive(true);
-        newTextBox.GetComponent<TextBox>().TypeText(text, dialogSpeed);
+        newTextBox.GetComponent<TextBox>().TypeText(text, speed);
     }
 }
