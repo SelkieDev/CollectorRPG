@@ -1270,6 +1270,10 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!1 &356370201 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 137160, guid: b51c33b52119c4f4fb240f43bddb4415, type: 2}
+  m_PrefabInternal: {fileID: 1315210748}
 --- !u!1 &362466954
 GameObject:
   m_ObjectHideFlags: 0
@@ -3421,6 +3425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf61334b0894efb44bfb88c3919507fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textBoxHelper: {fileID: 356370201}
 --- !u!4 &1122060053
 Transform:
   m_ObjectHideFlags: 0
