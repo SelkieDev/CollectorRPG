@@ -18,6 +18,7 @@ public class TextBox : MonoBehaviour {
       * Instead they should call TextManager.SpawnText______. */
     public void TypeText(string textToBeDisplayed, float textSpeed) {
         StopAllCoroutines();
+        modifier1 = modifier2 = textInbetween = null;
         ClearAllLetters();
         StartCoroutine(CoTypeText(textToBeDisplayed, textSpeed));
     }
@@ -39,17 +40,15 @@ public class TextBox : MonoBehaviour {
                         break;
                     }
                     text.text += textToBeDisplayed[i];
-                    yield return new WaitForSeconds(textSpeed);
                 } else {
                     text.text += modifier1 + textInbetween[j] + modifier2;
                     j++;
                 }
-                yield return new WaitForSeconds(textSpeed);
             }
             else {
                 text.text += textToBeDisplayed[i];
-                yield return new WaitForSeconds(textSpeed);
             }
+            yield return new WaitForSeconds(textSpeed);
         }
     }
 
