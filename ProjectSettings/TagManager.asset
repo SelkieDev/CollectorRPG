@@ -9,6 +9,7 @@ TagManager:
   - Canvas
   - TextBoxSpawn
   - TextBox
+  - CharacterTextBoxSpawn
   layers:
   - Default
   - TransparentFX

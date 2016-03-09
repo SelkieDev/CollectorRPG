@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour {
     public Sprite facingUp, facingDown, facingLeft, facingRight;
     public float movementSpeed;
     SpriteRenderer spriteRenderer;
+    public static bool canMove = true;
     
     void Awake() {
         spriteRenderer = this.GetComponent<SpriteRenderer>();
@@ -14,17 +15,19 @@ public class PlayerMovement : MonoBehaviour {
     
     
     void Update () {
-        if (PlayerInput.horizontalAxis == 1) {
-            spriteRenderer.sprite = facingRight;
-        } else if (PlayerInput.horizontalAxis == -1) {
-            spriteRenderer.sprite = facingLeft;
+        if(canMove) {
+            if (PlayerInput.horizontalAxis > .35f) {
+                spriteRenderer.sprite = facingRight;
+            } else if (PlayerInput.horizontalAxis < -.35f) {
+                spriteRenderer.sprite = facingLeft;
+            }
+            if (PlayerInput.verticalAxis > .35f) {
+                spriteRenderer.sprite = facingUp;
+            } else if (PlayerInput.verticalAxis < -.35f) {
+                spriteRenderer.sprite = facingDown;
+            }
+            transform.Translate(Vector2.up * Time.deltaTime * PlayerInput.verticalAxis * movementSpeed);
+            transform.Translate(Vector2.right * Time.deltaTime * PlayerInput.horizontalAxis * movementSpeed);
         }
-        if (PlayerInput.verticalAxis == 1) {
-            spriteRenderer.sprite = facingUp;
-        } else if (PlayerInput.verticalAxis == -1) {
-            spriteRenderer.sprite = facingDown;
-        }
-        transform.Translate(Vector2.up * Time.deltaTime * PlayerInput.verticalAxis * movementSpeed);
-        transform.Translate(Vector2.right * Time.deltaTime * PlayerInput.horizontalAxis * movementSpeed);
     }
 }
