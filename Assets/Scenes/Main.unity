@@ -3924,14 +3924,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 167402, guid: 7d1ca45d19c6b994b8f884a9f3b943b6, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11480946, guid: 7d1ca45d19c6b994b8f884a9f3b943b6, type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d1ca45d19c6b994b8f884a9f3b943b6, type: 2}
   m_IsPrefabParent: 0
@@ -4376,11 +4368,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1535820566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 434465a4031a2cf4994dd7cc66696be3, type: 3}
+  m_Script: {fileID: 11500000, guid: e14ed3a820abe904b884c1ff3ac28d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textToBeDisplayed: A seemingly normal rock. Although it kinda looks like it wants
-    to fight you.
+  textToBeDisplayed: I'm a <color=red>rock</color>!
 --- !u!1 &1571683255
 GameObject:
   m_ObjectHideFlags: 0
