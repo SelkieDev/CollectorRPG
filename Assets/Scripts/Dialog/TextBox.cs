@@ -10,17 +10,38 @@ public class TextBox : MonoBehaviour {
     /** Represents text that should be modified in some way (e.g. <color=cyan>SomethingSomething</color>). */
     string modifier1; string textInbetween; string modifier2;
 
+    /** Use images[spriteIndex].sprite to set the sprite of the character box. */
+    Image[] images; int spriteIndex;
+
     void Awake() {
+        images = GetComponentsInChildren<Image>();
         text = GetComponentInChildren<Text>();
+        Image[] sprites = GetComponentsInChildren<Image>();
+        for (int i = 0; i < sprites.Length; i += 1) {
+            if (sprites[i].sprite == null) {
+                spriteIndex = i;
+                break;
+            }
+        }
+    }
+
+    void OnDisable() {
+        ClearAllLetters();
+        images[spriteIndex].sprite = null;
     }
 
     /** Classes other than TextManager SHOULD NOT call this function.
       * Instead they should call TextManager.SpawnText______. */
-    public void TypeText(string textToBeDisplayed, float textSpeed) {
+    public void TypeText(string textToBeDisplayed, float textSpeed, Sprite sprite = null) {
         StopAllCoroutines();
         modifier1 = modifier2 = textInbetween = null;
         ClearAllLetters();
-        StartCoroutine(CoTypeText(textToBeDisplayed, textSpeed));
+        if (sprite == null) {
+            StartCoroutine(CoTypeText(textToBeDisplayed, textSpeed));
+        } else {
+            images[spriteIndex].sprite = sprite;
+            StartCoroutine(CoTypeText(textToBeDisplayed, textSpeed));
+        }
     }
 
     /** Displays TEXTTOBEDISPLAYED at one character per TEXTSPEED seconds. */
@@ -67,4 +88,6 @@ public class TextBox : MonoBehaviour {
         textInbetween = textInbetween.Remove(textInbetween.Length - 1, 1);
         modifier2 = modifier2.Remove(0, textInbetween.Length);
     }
+
+
 }

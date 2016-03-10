@@ -6,8 +6,11 @@ public class CharacterInteractable : MonoBehaviour {
 	public string textToBeDisplayed;  //This string will show up in the dialog box that spawns when the player interacts with this object or character.
 	SpriteRenderer spriteRenderer;
 
+	void Start() {
+		spriteRenderer = GetComponent<SpriteRenderer>();
+	}
+
 	public void Interaction() {
-		//PlayerMovement.canMove = false;
-		TextManager.SpawnCharacterTextBox(textToBeDisplayed);
+		TextManager.SpawnCharacterBox(textToBeDisplayed, spriteRenderer.sprite);
 	}
 }
