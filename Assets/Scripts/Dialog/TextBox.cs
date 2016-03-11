@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class TextBox : MonoBehaviour {
     Text text;
-    bool specialText = false;
 
     /** Represents text that should be modified in some way (e.g. <color=cyan>SomethingSomething</color>). */
     string modifier1; string textInbetween; string modifier2;
@@ -46,6 +45,7 @@ public class TextBox : MonoBehaviour {
 
     /** Displays TEXTTOBEDISPLAYED at one character per TEXTSPEED seconds. */
     IEnumerator CoTypeText(string textToBeDisplayed, float textSpeed) {
+        bool specialText = false;
         for (int i = 0, j = 0; i < textToBeDisplayed.Length; i++) {
             if (textToBeDisplayed[i] == '<' || specialText) {
                 specialText = true;
