@@ -13,7 +13,7 @@ public class CharacterInteractable : MonoBehaviour {
 		sprite = GetComponent<SpriteRenderer>().sprite;
 	}
 
-	public void Interaction() {
+	public void Interaction(GameObject player) {
 		TextManager.SpawnCharacterBox(textToBeDisplayed, sprite);
 	}
 }

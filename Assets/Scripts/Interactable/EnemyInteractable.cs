@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class EnemyInteractable : MonoBehaviour {
 
@@ -10,19 +10,23 @@ public class EnemyInteractable : MonoBehaviour {
 	/** The sprite that will be displayed on the dialog box. */
 	Sprite sprite;
 
+	public List<GameObject> enemiesInGroup = new List<GameObject>();
+
 	void Start() {
 		sprite = GetComponent<SpriteRenderer>().sprite;
+		enemiesInGroup.Add(gameObject);
 	}
 
-	public void Interaction() {
-		StartCoroutine("StartBattle");
+	public void Interaction(GameObject player) {
+		player.SendMessage("PrepareForBattle");
+		StartCoroutine("PrepareForBattle");
 	}
 
-	IEnumerator StartBattle() {
+	IEnumerator PrepareForBattle() {
 		TextManager.SpawnCharacterBox(textToBeDisplayed, sprite);
 		PlayerMovement.canMove = false;
-		yield return new WaitForSeconds(2f);
-		SceneManager.LoadScene("Battle");
+		BattleManager.SetEnemyParty(enemiesInGroup.ToArray());
+		yield return new WaitForSeconds(2);
 		BattleManager.StartBattle();
 	}
 }

@@ -29,4 +29,8 @@ public class util : MonoBehaviour {
 		}
 		return null;
 	}
+
+	public static void AssignValuesToDemon(GameObject demon, string values) {
+		
+	}
 }

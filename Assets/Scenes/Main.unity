@@ -709,6 +709,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textToBeDisplayed: You should be going into a battle <color=red>soon</color>!!!!
+  enemiesInGroup: []
 --- !u!58 &32823098
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2978,6 +2979,7 @@ GameObject:
   - 223: {fileID: 896660819}
   - 114: {fileID: 896660818}
   - 114: {fileID: 896660817}
+  - 114: {fileID: 896660821}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Canvas
@@ -3061,6 +3063,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &896660821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 896660816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 739dcf7f3e3b7a3498446c9d74b1217d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  friendlySpawnHelper: {fileID: 0}
+  enemySpawnHelper: {fileID: 0}
 --- !u!1 &908524148
 GameObject:
   m_ObjectHideFlags: 0
@@ -4285,6 +4300,19 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 476284, guid: 9656026172bfd044a9d16b8e8acde168, type: 2}
   m_PrefabInternal: {fileID: 667339327}
+--- !u!114 &1457139330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1457139322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8824c3be665940429d8e8e1bf559e39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerParty:
+  - {fileID: 1535820566}
 --- !u!1 &1535820566
 GameObject:
   m_ObjectHideFlags: 0

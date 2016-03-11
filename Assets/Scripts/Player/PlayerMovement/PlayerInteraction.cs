@@ -10,7 +10,7 @@ public class PlayerInteraction : MonoBehaviour {
 		if (PlayerInput.interactPressed) {
 			GameObject nearestInteractable = util.FindNearestObject(this.gameObject, interactablesInRange);
 			if (nearestInteractable != null) {
-				nearestInteractable.SendMessage("Interaction");
+				nearestInteractable.SendMessage("Interaction", gameObject);
 			}
 		}
 	}
